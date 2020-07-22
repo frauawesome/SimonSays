@@ -55,8 +55,13 @@ function nextSequence() {
     var randomChosenColor = buttonColors[randomNumber];
     gamePattern.push(randomChosenColor);
     
-    playSound(randomChosenColor);    
-    $("#" + randomChosenColor).fadeOut(100).fadeIn(100); 
+    // loops over array and animates each button with an .8 second delay
+    gamePattern.forEach((element, i) => {
+        setTimeout(() => {
+          animateButton(element);
+        }, i * 650);
+      });
+      
 }
 
 function playSound(name) {
@@ -77,4 +82,8 @@ function startOver() {
     level = 0;
 };
 
-
+function animateButton(element) {
+    console.log(element);
+    playSound(element);    
+    $("#" + element).fadeOut(100).fadeIn(100);
+};
